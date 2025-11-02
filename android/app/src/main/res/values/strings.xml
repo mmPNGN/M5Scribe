@@ -1,0 +1,100 @@
+<resources>
+    <string name="app_name">M5Scribe</string>
+    <string name="status_not_connected">未接続</string>
+    <string name="status_connecting">接続中…</string>
+    <string name="status_connected">接続済み: %s</string>
+    <string name="status_disconnected">切断されました</string>
+    <string name="status_auto_connecting">自動接続中: %s…</string>
+    <string name="scan_button">スキャン</string>
+    <string name="disconnect_button">切断</string>
+    <string name="devices_label">利用可能なデバイス:</string>
+    <string name="volume_label">音量:</string>
+    <string name="toast_bt_enabled">Bluetoothが有効になりました</string>
+    <string name="toast_bt_required">Bluetoothが必要です</string>
+    <string name="toast_permissions_granted">権限が付与されました</string>
+    <string name="toast_permissions_required">権限が必要です</string>
+    <string name="toast_bt_not_supported">Bluetoothがサポートされていません</string>
+    <string name="toast_devices_found">%d個のペアリング済みデバイスが見つかりました</string>
+    <string name="toast_no_devices">ペアリング済みデバイスが見つかりません</string>
+    <string name="toast_connected">接続に成功しました</string>
+    <string name="toast_disconnected">切断されました</string>
+    <string name="toast_connection_failed">接続に失敗しました: %s</string>
+
+    <!-- Transcription related strings -->
+    <string name="transcription_label">文字起こし (接続時に自動開始):</string>
+    <string name="transcription_clear">クリア</string>
+    <string name="transcription_save">保存</string>
+    <string name="transcription_placeholder">文字起こし結果がここに表示されます…</string>
+    <string name="partial_result_label">認識中:</string>
+    <string name="partial_result_placeholder">音声を認識中…</string>
+    <string name="toast_transcription_started">文字起こしを開始しました</string>
+    <string name="toast_transcription_stopped">文字起こしを停止しました</string>
+    <string name="toast_transcription_saved">文字起こし結果を保存しました</string>
+    <string name="toast_transcription_error">音声認識エラー: %s</string>
+    <string name="toast_transcription_not_available">音声認識が利用できません</string>
+
+    <!-- Top bar buttons -->
+    <string name="history_button">履歴</string>
+    <string name="settings_button">設定</string>
+
+    <!-- History screen -->
+    <string name="history_title">文字起こし履歴</string>
+    <string name="history_no_sessions">まだ文字起こしデータがありません</string>
+    <string name="history_session_count">%dセッション</string>
+    <string name="history_empty_hint">M5Stackに接続して文字起こしを開始すると、履歴がここに表示されます</string>
+
+    <!-- Session list screen -->
+    <string name="session_list_title">セッション一覧</string>
+    <string name="session_duration">%d分</string>
+    <string name="session_time_range">%s - %s</string>
+    <string name="session_has_summary">要約済み</string>
+    <string name="session_no_summary">要約なし</string>
+
+    <!-- Session detail screen -->
+    <string name="session_detail_title">セッション詳細</string>
+    <string name="session_info">%s  |  %s - %s  (%d分)</string>
+    <string name="button_summarize">要約を生成</string>
+    <string name="button_delete">削除</string>
+    <string name="button_share">共有</string>
+    <string name="summary_label">要約:</string>
+    <string name="summary_placeholder">要約ボタンを押すとAIが内容を要約します</string>
+    <string name="summary_generating">要約を生成中…</string>
+    <string name="transcription_full_label">文字起こし全文:</string>
+    <string name="delete_confirm_title">セッションを削除</string>
+    <string name="delete_confirm_message">このセッションを削除しますか？この操作は元に戻せません。</string>
+    <string name="delete_confirm_yes">削除</string>
+    <string name="delete_confirm_no">キャンセル</string>
+    <string name="toast_session_deleted">セッションを削除しました</string>
+    <string name="toast_summarize_error">要約の生成に失敗しました: %s</string>
+    <string name="toast_api_key_not_set">APIキーが設定されていません。設定画面で設定してください。</string>
+
+    <!-- Settings screen -->
+    <string name="settings_title">設定</string>
+    <string name="settings_bluetooth_label">Bluetooth接続管理</string>
+    <string name="settings_saved_device_label">保存済みデバイス</string>
+    <string name="settings_saved_device_none">なし（自動接続は無効です）</string>
+    <string name="settings_saved_device_info">%s\n%s</string>
+    <string name="button_forget_device">デバイスを削除</string>
+    <string name="toast_device_forgotten">保存済みデバイスを削除しました</string>
+    <string name="settings_api_key_label">LLM APIキー</string>
+    <string name="settings_api_key_hint">sk-…</string>
+    <string name="settings_api_key_current">現在のAPIキー: %s</string>
+    <string name="settings_api_key_not_set">APIキーが設定されていません</string>
+    <string name="settings_api_provider_label">APIプロバイダー</string>
+    <string name="settings_audio_playback_label">音声再生設定</string>
+    <string name="settings_audio_playback_switch">受信した音声をスピーカーで再生する</string>
+    <string name="settings_audio_playback_description">OFFにすると、Bluetoothから受信した音声は再生されません。音声認識は端末のマイクを使用するため、再生なしでも文字起こしは可能です。</string>
+    <string name="button_save">保存</string>
+    <string name="button_clear_api_key">クリア</string>
+    <string name="toast_api_key_saved">APIキーを保存しました</string>
+    <string name="toast_api_key_cleared">APIキーをクリアしました</string>
+    <string name="toast_api_key_empty">APIキーを入力してください</string>
+    <string name="toast_settings_saved">設定を保存しました</string>
+
+    <!-- Foreground Service notification -->
+    <string name="notification_channel_name">文字起こしサービス</string>
+    <string name="notification_channel_description">バックグラウンドで文字起こしを実行します</string>
+    <string name="notification_title">M5Scribe 文字起こし中</string>
+    <string name="notification_text">Bluetooth接続中 - タップして開く</string>
+    <string name="notification_action_stop">停止</string>
+</resources>

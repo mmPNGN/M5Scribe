@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- セッション一覧のアイテム -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- チェックボックス（選択モード時のみ表示） -->
+        <CheckBox
+            android:id="@+id/itemCheckbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <!-- 時刻アイコン -->
+        <ImageView
+            android:id="@+id/sessionIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@android:drawable/ic_menu_recent_history"
+            android:tint="@android:color/holo_green_dark"
+            android:contentDescription="セッション" />
+
+        <!-- セッション情報 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp">
+
+            <!-- 時刻範囲 -->
+            <TextView
+                android:id="@+id/timeRangeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10:30 - 10:45"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/black" />
+
+            <!-- 所要時間と要約状態 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp">
+
+                <TextView
+                    android:id="@+id/durationText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="15分"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/summaryStatusText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" • 要約済み"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:layout_marginStart="8dp" />
+            </LinearLayout>
+
+            <!-- 文字起こしプレビュー -->
+            <TextView
+                android:id="@+id/transcriptionPreviewText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="プレビューテキストがここに表示されます..."
+                android:textSize="13sp"
+                android:textColor="#666666"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginTop="8dp"
+                android:background="#F5F5F5"
+                android:padding="8dp" />
+        </LinearLayout>
+
+        <!-- 矢印アイコン -->
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_more"
+            android:tint="@android:color/darker_gray"
+            android:contentDescription="詳細を見る" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
