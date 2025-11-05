@@ -1,5 +1,15 @@
 # Project M5Scribe - ビルド＆書き込み手順
 
+## 概要
+
+M5Stack Core2を使用したリアルタイム音声文字起こしデバイスとAndroidアプリケーションです。Bluetooth経由でデバイスに接続し、音声をリアルタイムで文字起こし、AI要約機能も行えます。
+
+<div align="center">
+  <img src="images/device.jpg" alt="M5Scribe デバイス" width="400"/>
+  <img src="images/case.jpg" alt="3Dプリントケース" width="400"/>
+  <p><em>M5Stack Core2デバイスと専用3Dプリントケース</em></p>
+</div>
+
 ## M5Stack Core2への書き込み方法
 
 ### ターミナルから実行する場合
@@ -53,6 +63,11 @@ pio device monitor --baud 115200
 - **AI要約**: OpenAIのChatGPT APIを使用して文字起こしを自動要約
 - **セッション管理**: 日付ごとに文字起こしセッションを保存・整理
 - **安全なストレージ**: APIキーと機密データはEncryptedSharedPreferencesで暗号化保存
+
+<div align="center">
+  <img src="images/app-screenshot.png" alt="アプリケーション画面" width="300"/>
+  <p><em>要約実行画面</em></p>
+</div>
 
 ## 必要要件
 
