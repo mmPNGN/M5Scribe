@@ -38,6 +38,24 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/settingsButton" />
 
+            <!-- 再接続ボタン -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reconnectButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="再接続"
+                android:textSize="14sp"
+                app:icon="@android:drawable/stat_notify_sync"
+                app:iconGravity="textStart"
+                app:iconSize="18dp"
+                app:iconPadding="4dp"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:visibility="gone"
+                android:contentDescription="再接続"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/settingsButton" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/settingsButton"
                 android:layout_width="wrap_content"
@@ -63,25 +81,6 @@
                 android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@id/titleText"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/reconnectButton" />
-
-            <!-- 再接続ボタン -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/reconnectButton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="再接続"
-                android:textSize="13sp"
-                app:icon="@android:drawable/stat_notify_sync"
-                app:iconGravity="textStart"
-                app:iconSize="18dp"
-                app:iconPadding="4dp"
-                style="@style/Widget.Material3.Button.TonalButton"
-                android:visibility="gone"
-                android:contentDescription="再接続"
-                android:layout_marginStart="8dp"
-                app:layout_constraintTop_toBottomOf="@id/titleText"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
