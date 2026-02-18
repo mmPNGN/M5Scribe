@@ -260,14 +260,18 @@ class MainActivity : AppCompatActivity() {
         binding.statusText.text = getString(R.string.status_connecting)
         binding.statusText.setTextColor(getColor(android.R.color.holo_orange_dark))
 
-        CoroutineScope(Dispatchers.Main).launch {
+        // IOスレッドで接続処理を実行（UIスレッドをブロックしない）
+        CoroutineScope(Dispatchers.IO).launch {
             try {
-                // 音声再生設定を読み込む
+                // 音声再生設定を読み込む（IOスレッドで実行）
                 val audioPlaybackEnabled = getAudioPlaybackSetting()
                 Log.d("MainActivity", "Audio playback enabled: $audioPlaybackEnabled")
-                Toast.makeText(this@MainActivity,
-                    if (audioPlaybackEnabled) "音声再生: ON" else "音声再生: OFF（マイクのみで認識）",
-                    Toast.LENGTH_SHORT).show()
+
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@MainActivity,
+                        if (audioPlaybackEnabled) "音声再生: ON" else "音声再生: OFF（マイクのみで認識）",
+                        Toast.LENGTH_SHORT).show()
+                }
 
                 bluetoothService = BluetoothAudioService(
                     device = device,
@@ -278,16 +282,22 @@ class MainActivity : AppCompatActivity() {
                                 binding.statusText.setTextColor(getColor(android.R.color.holo_green_dark))
                                 Toast.makeText(this@MainActivity, R.string.toast_connected, Toast.LENGTH_SHORT).show()
 
-                                // 最後に接続したデバイスとして保存
-                                saveLastConnectedDevice(device.address)
+                                // 最後に接続したデバイスとして保存（非同期で実行）
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    saveLastConnectedDevice(device.address)
+                                }
 
                                 // 設定画面に接続状態を通知
                                 notifyConnectionState(true, device.name ?: "")
 
-                                // 保存された音量設定を適用
-                                val volume = getVolumeSetting()
-                                bluetoothService?.setVolume(volume / 100f)
-                                Log.d("MainActivity", "Applied saved volume: $volume")
+                                // 保存された音量設定を適用（非同期で取得）
+                                CoroutineScope(Dispatchers.IO).launch {
+                                    val volume = getVolumeSetting()
+                                    withContext(Dispatchers.Main) {
+                                        bluetoothService?.setVolume(volume / 100f)
+                                        Log.d("MainActivity", "Applied saved volume: $volume")
+                                    }
+                                }
 
                                 // 新しいセッションを開始
                                 startNewSession()
@@ -322,15 +332,19 @@ class MainActivity : AppCompatActivity() {
                     onAudioDataReceived = null,  // マイクベースの認識では使用しない
                     audioPlaybackEnabled = audioPlaybackEnabled  // 設定から読み込んだ値
                 )
+
+                // Bluetooth接続（ブロッキング処理だがIOスレッドで実行）
                 bluetoothService?.connect()
             } catch (e: Exception) {
-                binding.statusText.text = getString(R.string.status_disconnected)
-                binding.statusText.setTextColor(getColor(android.R.color.holo_red_dark))
-                Toast.makeText(this@MainActivity, getString(R.string.toast_connection_failed, e.message), Toast.LENGTH_LONG).show()
+                withContext(Dispatchers.Main) {
+                    binding.statusText.text = getString(R.string.status_disconnected)
+                    binding.statusText.setTextColor(getColor(android.R.color.holo_red_dark))
+                    Toast.makeText(this@MainActivity, getString(R.string.toast_connection_failed, e.message), Toast.LENGTH_LONG).show()
 
-                // 接続失敗時に再接続ボタンを表示
-                binding.reconnectButton.visibility = android.view.View.VISIBLE
-                binding.reconnectButton.isEnabled = true
+                    // 接続失敗時に再接続ボタンを表示
+                    binding.reconnectButton.visibility = android.view.View.VISIBLE
+                    binding.reconnectButton.isEnabled = true
+                }
             }
         }
     }
